@@ -1,0 +1,36 @@
+　　1、在ubuntu中安装git
+
+$ sudo apt-get install git git-core
+　　2、配置本机的git
+
+$ git config --global user.name "abcd"
+$ git config --global user.email abcd@efgh.com
+　　3、生成密钥
+
+$ ssh-keygen -t rsa -C "abcd@efgh.com" //邮箱同上
+　　4、提交密钥
+
+vim /home/linx/.ssh/id_rsa.pub //复制里面的密钥
+　　到github网页中登陆自己的账号，然后再account setting中，找到SSH KEY讲复制的密钥加入（需要再次输入github的密码）
+
+　　5、检验是否链接上了github
+
+$ ssh git@github.com
+//正常情况下，回显如下
+PTY allocation request failed on channel 0
+Hi plinx! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+　　6、首次推送
+
+复制代码
+$ mkdir tmp      //创建推送目录
+$ cd tmp         //进入推送目录    
+$ git init       //设置该目录为推送
+$ touch README   //生成readme
+$ git add README //加入修改列表
+$ git commit -m 'first commit' //递交修改声明
+$ git remote add origin git@github.com:abcd/tmp.git //为远程Git更名为origin
+$ git push -u origin master //推送此次修改
+
+删除链接仓库 git remote rm origin 再添加仓库
+
